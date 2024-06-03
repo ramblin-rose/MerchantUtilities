@@ -1,0 +1,8 @@
+﻿## Title: Merchant Utilities Recipes
+## Version: 0.0.1
+## Author: RamblinRose
+## Interface: 40400
+## Dependenies: MerchantUtilities
+## SavedVariables: MerchantUtilitiesRecipesDB
+embeds.xml
+Main.lua

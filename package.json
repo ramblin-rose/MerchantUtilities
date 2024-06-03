@@ -1,0 +1,24 @@
+{
+  "name": "merchantutilities",
+  "title": "Merchant Utilities",
+  "version": "0.5.0",
+  "interface": "40400",
+  "description": "Merchant Utilities",
+  "main": "gulpfile.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "RamblinRose",
+  "license": "MIT",
+  "devDependencies": {
+    "del": "^7.1.0",
+    "gulp": "^5.0.0",
+    "gulp-env": "^0.4.0",
+    "gulp-exec": "^5.0.0",
+    "gulp-newer": "^1.4.0",
+    "gulp-replace": "^1.1.4",
+    "gulp-touch-cmd": "^0.0.1",
+    "gulp-zip": "^6.0.0"
+  }
+}

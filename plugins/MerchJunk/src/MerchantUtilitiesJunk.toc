@@ -1,0 +1,8 @@
+﻿## Title: Merch Junk
+## Version: 0.5.1
+## Author: RamblinRose
+## Interface: 40400
+## Dependenies: MerchantUtilities
+## SavedVariables: MerchantUtilitiesJunkDB
+embeds.xml
+Main.lua

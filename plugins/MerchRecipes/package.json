@@ -1,0 +1,24 @@
+{
+  "name": "merchrecipes",
+  "title": "Merchant Utilities Recipes",
+  "version": "0.5.0",
+  "interface": "040400",
+  "description": "Highlights known merchant recipes",
+  "main": "gulpfile.js",
+  "type": "module",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "wow",
+    "addon"
+  ],
+  "author": "RamblinRose",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^5.0.0",
+    "gulp-newer": "^1.4.0",
+    "gulp-replace": "^1.1.4",
+    "gulp-touch-cmd": "^0.0.1"
+  }
+}

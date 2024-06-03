@@ -1,0 +1,1 @@
+Stack icon from <a href="https://www.flaticon.com/free-icons/art-and-design" title="art and design icons">Art and design icons created by ZAK - Flaticon</a>
