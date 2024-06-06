@@ -95,7 +95,7 @@ function addons(cb) {
     packageJson.title.replace(/(\s)+/g, "")
   );
 
-  return src("build/**/*", { ignoreInitial: false })
+  return src("build/**/*", { ignoreInitial: false, encoding: false })
     .pipe(newer(output))
     .pipe(dest(output))
     .pipe(touch());

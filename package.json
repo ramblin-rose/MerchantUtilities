@@ -1,7 +1,7 @@
 {
   "name": "merchantutilities",
   "title": "Merchant Utilities",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "interface": "40400",
   "description": "Merchant Utilities",
   "main": "gulpfile.js",
