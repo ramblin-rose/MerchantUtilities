@@ -5,7 +5,7 @@ local L = AddOn.L
 local JunkPlugin = Merch.PluginTemplate:new({})
 local button, progressBar = nil, nil
 local driverFrame, driver
-local merchantIsOpen = false
+
 --------------------------------
 local function findBagItemsByQuality(itemQuality)
 	local items = {}
@@ -15,7 +15,8 @@ local function findBagItemsByQuality(itemQuality)
 			local meta = C_Container.GetContainerItemInfo(bag, slot)
 			if meta then
 				local quality = select(3, GetItemInfo(meta.itemID))
-				if itemQuality == quality then
+				local sellPrice = select(11, GetItemInfo(meta.itemID))
+				if itemQuality == quality and sellPrice > 0 then
 					table.insert(items, { bag = bag, slot = slot, itemID = meta.itemID })
 				end
 			end
@@ -53,7 +54,7 @@ local function sellJunk()
 				local meta = C_Container.GetContainerItemInfo(e.bag, e.slot)
 				progressBar.label:SetText(meta.itemName)
 				if meta and meta.itemID == e.itemID then
-					if merchantIsOpen then
+					if MerchantFrame:IsVisible() then
 						C_Container.UseContainerItem(e.bag, e.slot)
 					else
 						break
@@ -84,22 +85,11 @@ local function sellJunk()
 	end
 end
 -------------------------------
-local function updateState()
-	if button then
-		local count = findBagItemsByQuality()
-		if count > 0 then
-			button:Show()
-		else
-			button:Hide()
-		end
-	end
-end
--------------------------------
 local function createButton()
 	local buttonTexturePath = "Interface\\AddOns\\" .. AddOn.name .. "\\assets\\trashcan.png"
 	local buttonHighlightPath = "Interface\\AddOns\\" .. AddOn.name .. "\\assets\\trashcan.png"
 	button = CreateFrame("Button", nil, MerchantFrame)
-	button:Hide()
+
 	button:SetWidth(20)
 	button:SetHeight(20)
 	button:SetPoint("TOPLEFT", MerchantFrame, "TOPLEFT", 60, -32)
@@ -138,7 +128,9 @@ local function createButton()
 	coin.texture:SetAllPoints(coin)
 	coin.texture:SetTexture("Interface\\MONEYFRAME\\UI-GoldIcon.blp")
 	coin:SetPoint("TOPLEFT", button, "BOTTOMRIGHT", -8, 7)
+	button:SetScript("OnDoubleClick", function()
 
+	end)
 	button:SetScript("OnClick", function()
 		sellJunk()
 	end)
@@ -147,22 +139,21 @@ local function createButton()
 end
 --------------------------------
 function JunkPlugin:onMerchantShow(...)
-	merchantIsOpen = true
-	updateState()
+
 end
+
 --------------------------------
 function JunkPlugin:onMerchantUpdate(...)
-	updateState()
+
 end
+
 --------------------------------
 function JunkPlugin:onMerchantClose(...)
-	merchantIsOpen = false
 	if driver then
 		driver:Stop()
 	end
-	assert(button)
-	button:Hide()
 end
+
 ----------------------------------
 function AddOn:OnInitialize()
 	JunkPlugin:new():init(AddOn):Register()
@@ -195,6 +186,7 @@ function AddOn:OnInitialize()
 	LibStub("AceConfig-3.0"):RegisterOptionsTable(tostring(self), options, options.name)
 	createButton()
 end
+
 ----------------------------------
 function AddOn:SetOptOut(optOut)
 	if type(optOut) == "boolean" then
@@ -203,8 +195,10 @@ function AddOn:SetOptOut(optOut)
 		self.db.realm.optOut = false
 	end
 end
+
 ----------------------------------
 function AddOn:GetOptOut()
 	return self.db.realm.optOut
 end
+
 ----------------------------------

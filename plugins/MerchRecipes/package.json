@@ -1,7 +1,7 @@
 {
   "name": "merchrecipes",
   "title": "Merchant Utilities Recipes",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "interface": "040400",
   "description": "Highlights known merchant recipes",
   "main": "gulpfile.js",
